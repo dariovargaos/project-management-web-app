@@ -4,8 +4,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { Box } from "@chakra-ui/react";
-import "./App.css";
 
 // pages and components
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -28,13 +26,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return (
-    <Box display="flex">
-      <Box flexGrow="1" p="0 60px">
-        <RouterProvider router={router} />
-      </Box>
-    </Box>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
