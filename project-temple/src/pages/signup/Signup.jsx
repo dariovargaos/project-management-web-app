@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSignup } from "../../hooks/useSignup";
 
 import {
   Box,
@@ -8,6 +9,7 @@ import {
   FormLabel,
   Heading,
   Input,
+  Text,
 } from "@chakra-ui/react";
 
 export default function Signup() {
@@ -16,10 +18,11 @@ export default function Signup() {
   const [displayName, setDisplayName] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
   const [thumbnailErorr, setThumbnailError] = useState(null);
+  const { signup, isPending, error } = useSignup();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password, displayName, thumbnail);
+    signup(email, password, displayName, thumbnail);
   };
 
   const handleFileChange = (e) => {
@@ -37,8 +40,8 @@ export default function Signup() {
       return;
     }
 
-    if (selected.size > 100000) {
-      setThumbnailError("Image file size must be less than 100kb.");
+    if (selected.size > 1e6) {
+      setThumbnailError("Image file size must be less than 1mb.");
       return;
     }
 
@@ -93,9 +96,17 @@ export default function Signup() {
             <Input type="file" required onChange={handleFileChange} />
             <FormErrorMessage>{thumbnailErorr}</FormErrorMessage>
           </FormControl>
-          <Button colorScheme="whatsapp" type="submit">
-            Sign up
-          </Button>
+          {!isPending && (
+            <Button colorScheme="whatsapp" type="submit">
+              Sign up
+            </Button>
+          )}
+          {isPending && (
+            <Button colorScheme="whatsapp" type="submit" disabled>
+              Loading
+            </Button>
+          )}
+          {error && <Text>{error}</Text>}
         </form>
       </Box>
     </Box>

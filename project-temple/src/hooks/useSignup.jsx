@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import {
-  projectAuth,
-  projectStorage,
-  projectFirestore,
-} from "../firebase/config";
+import { auth, storage, db } from "../firebase/config";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
@@ -18,10 +17,9 @@ export const useSignup = () => {
 
     try {
       //signup user
-      const res = await projectAuth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+
+      console.log("user signed up:", res.user);
 
       if (!res) {
         throw new Error("Could not complete signup.");
@@ -29,17 +27,19 @@ export const useSignup = () => {
 
       // upload user thumbnail
       const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`;
-      const img = await projectStorage.ref(uploadPath).put(thumbnail);
-      const imgUrl = await img.ref.getDownloadURL();
+      const imgRef = ref(storage, uploadPath);
+      const uploadTask = uploadBytes(imgRef, thumbnail);
+      const uploadSnapshot = await uploadTask;
+      const imgUrl = await getDownloadURL(uploadSnapshot.ref);
 
       //add display name to user
-      await res.user.updateProfile({
+      await updateProfile(auth.currentUser, {
         displayName: displayName,
         photoURL: imgUrl,
       });
 
       // create a user document
-      await projectFirestore.collection("users").doc(res.user.uid).set({
+      await setDoc(doc(collection(db, "users"), res.user.uid), {
         online: true,
         displayName: displayName,
         photoURL: imgUrl,
