@@ -1,12 +1,15 @@
 import { Box, Text, List, ListItem, ListIcon, Image } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { CalendarIcon } from "@chakra-ui/icons";
 
 // images
 import DashboardIcon from "../assets/dashboard_icon.svg";
 import AddIcon from "../assets/add_icon.svg";
+import UserAvatar from "./UserAvatar";
 
 export default function Sidebar() {
+  const { user } = useAuthContext();
   return (
     <List color="white" fontSize="1.2em" spacing={4}>
       <Box
@@ -16,8 +19,8 @@ export default function Sidebar() {
         p="40px 30px"
         borderBottom="1px solid rgba(255,255,255, 0.2)"
       >
-        {/*avatar and username here later */}
-        <Text>Hey user</Text>
+        <UserAvatar src={user.photoURL} />
+        <Text>Hey {user.displayName}</Text>
       </Box>
       <ListItem>
         <NavLink to="/">
