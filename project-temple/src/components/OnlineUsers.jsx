@@ -1,6 +1,13 @@
 import { useCollection } from "../hooks/useCollection";
 
-import { Box, Heading, List, ListItem } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  List,
+  ListItem,
+  Avatar,
+  AvatarBadge,
+} from "@chakra-ui/react";
 
 // components
 import UserAvatar from "./UserAvatar";
@@ -28,9 +35,16 @@ export default function OnlineUsers() {
             gap={4}
           >
             <ListItem>{user.displayName}</ListItem>
-            <ListItem>
+            <Avatar>
               <UserAvatar src={user.photoURL} />
-            </ListItem>
+              {user.online && (
+                <AvatarBadge
+                  width="1.1em"
+                  h="1.1em"
+                  bg="green.500"
+                ></AvatarBadge>
+              )}
+            </Avatar>
           </List>
         ))}
     </List>
