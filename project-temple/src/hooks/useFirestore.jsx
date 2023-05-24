@@ -1,5 +1,12 @@
 import { useState, useEffect, useReducer } from "react";
-import { projectFirestore, timestamp } from "../firebase/config";
+import {
+  collection,
+  doc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db, timestamp } from "../firebase/config";
 
 let initialState = {
   document: null,
@@ -45,12 +52,12 @@ const firestoreReducer = (state, action) => {
   }
 };
 
-export const useFirestore = (collection) => {
+export const useFirestore = (collectionName) => {
   const [response, dispatch] = useReducer(firestoreReducer, initialState);
   const [isCancelled, setIsCancelled] = useState(false);
 
   //collection reference
-  const ref = projectFirestore.collection(collection);
+  const collectionRef = collection(db, collectionName);
 
   //only dispatch if not cancelled
   const dispatchIfNotCancelled = (action) => {
@@ -65,10 +72,13 @@ export const useFirestore = (collection) => {
 
     try {
       const createdAt = timestamp.fromDate(new Date());
-      const addedDocument = await ref.add({ ...doc, createdAt: createdAt });
+      const addedDocumentRef = await addDoc(collectionRef, {
+        ...doc,
+        createdAt: createdAt,
+      });
       dispatchIfNotCancelled({
         type: "ADDED_DOCUMENT",
-        payload: addedDocument,
+        payload: addedDocumentRef,
       });
     } catch (err) {
       dispatchIfNotCancelled({ type: "ERROR", payload: err.message });
@@ -80,10 +90,10 @@ export const useFirestore = (collection) => {
     dispatch({ type: "IS_PENDING" });
 
     try {
-      const deletedDocument = await ref.doc(id).delete();
+      await deleteDoc(doc(collectionRef, id));
       dispatchIfNotCancelled({
         type: "DELETED_DOCUMENT",
-        payload: deletedDocument,
+        payload: id,
       });
     } catch (err) {
       dispatchIfNotCancelled({
@@ -98,12 +108,11 @@ export const useFirestore = (collection) => {
     dispatch({ type: "IS_PENDING" });
 
     try {
-      const updatedDocument = await ref.doc(id).update(updates);
+      await updateDoc(doc(collectionRef, id), updates);
       dispatchIfNotCancelled({
         type: "UPDATED_DOCUMENT",
-        payload: updatedDocument,
+        payload: id,
       });
-      return updatedDocument;
     } catch (err) {
       dispatchIfNotCancelled({ type: "ERROR", payload: err.message });
       return null;
