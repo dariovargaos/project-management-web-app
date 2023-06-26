@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useDocument } from "../../hooks/useDocument";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
+
+//components
+import ProjectSummary from "./ProjectSummary";
 
 export default function Project() {
   const { id } = useParams();
@@ -14,8 +17,8 @@ export default function Project() {
     return <Text>Loading...</Text>;
   }
   return (
-    <Box>
-      <Heading>{document && document.name}</Heading>
-    </Box>
+    <SimpleGrid columns="2" spacing={10}>
+      <ProjectSummary project={document} />
+    </SimpleGrid>
   );
 }
