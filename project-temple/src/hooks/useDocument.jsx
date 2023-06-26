@@ -1,31 +1,33 @@
 import { useState, useEffect } from "react";
-import { projectFirestore } from "../firebase/config";
+import { db } from "../firebase/config";
+import { onSnapshot, doc } from "firebase/firestore";
 
-export const useDocument = (collection, id) => {
+export const useDocument = (collectionName, id) => {
   const [document, setDocument] = useState(null);
   const [error, setError] = useState(null);
 
   // realtime data for document
   useEffect(() => {
-    const ref = projectFirestore.collection(collection).doc(id);
-
-    const unsubscribe = ref.onSnapshot(
+    const docRef = doc(db, collectionName, id);
+    const unsubscribe = onSnapshot(
+      docRef,
       (snapshot) => {
         if (snapshot.data()) {
           setDocument({ ...snapshot.data(), id: snapshot.id });
           setError(null);
         } else {
-          setError("Document that you are looking for does not exist.");
+          setDocument(null);
+          setError("No such document exists.");
         }
       },
       (error) => {
         console.log(error.message);
-        setError("Failed to get documents.");
+        setError("Could not get the data");
       }
     );
 
     return () => unsubscribe();
-  }, [collection, id]);
+  }, [collectionName, id]);
 
   return { document, error };
 };
