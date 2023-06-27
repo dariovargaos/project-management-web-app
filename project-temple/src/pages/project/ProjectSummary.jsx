@@ -6,7 +6,6 @@ import {
   CardFooter,
   Heading,
   Text,
-  HStack,
 } from "@chakra-ui/react";
 
 //components

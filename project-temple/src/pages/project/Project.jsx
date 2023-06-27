@@ -4,6 +4,7 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 
 //components
 import ProjectSummary from "./ProjectSummary";
+import ProjectComments from "./ProjectComments";
 
 export default function Project() {
   const { id } = useParams();
@@ -19,6 +20,7 @@ export default function Project() {
   return (
     <SimpleGrid columns="2" spacing={10}>
       <ProjectSummary project={document} />
+      <ProjectComments />
     </SimpleGrid>
   );
 }
