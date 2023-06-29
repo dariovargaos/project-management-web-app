@@ -9,7 +9,17 @@ import {
   FormLabel,
   Textarea,
   Button,
+  List,
+  ListItem,
+  Text,
+  Flex,
+  Card,
+  CardHeader,
+  CardBody,
 } from "@chakra-ui/react";
+
+//components
+import UserAvatar from "../../components/UserAvatar";
 
 export default function ProjectComments({ project }) {
   const [newComment, setNewComment] = useState("");
@@ -27,7 +37,7 @@ export default function ProjectComments({ project }) {
       id: Math.random(),
     };
     await updateDocument(project.id, {
-      comments: [...project.comment, commentToAdd],
+      comments: [...project.comments, commentToAdd],
     });
 
     if (!response.error) {
@@ -36,7 +46,24 @@ export default function ProjectComments({ project }) {
   };
   return (
     <Box>
-      <Heading size="sm">Project Comments</Heading>
+      <Heading size="sm" color="color.headingColor">
+        Project Comments
+      </Heading>
+
+      {project.comments.length > 0 &&
+        project.comments.map((comment) => (
+          <Card key={comment.id} mb="10px">
+            <CardHeader display="flex" alignItems="center" gap="8px">
+              <UserAvatar src={comment.photoURL} />
+              <Text>{comment.displayName}</Text>
+            </CardHeader>
+            <CardBody>
+              <Text color="color.textColort">date here</Text>
+              <Text color="color.textColort">{comment.content}</Text>
+            </CardBody>
+          </Card>
+        ))}
+
       <form onSubmit={handleSubmit}>
         <FormControl>
           <FormLabel>Add new comment:</FormLabel>

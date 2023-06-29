@@ -6,6 +6,7 @@ import {
   CardFooter,
   Heading,
   Text,
+  Flex,
 } from "@chakra-ui/react";
 
 //components
@@ -13,7 +14,7 @@ import UserAvatar from "../../components/UserAvatar";
 
 export default function ProjectSummary({ project }) {
   return (
-    <Card>
+    <Card maxH="400px">
       <CardHeader>
         <Heading size="md">{project.name}</Heading>
       </CardHeader>
@@ -27,9 +28,9 @@ export default function ProjectSummary({ project }) {
           Project is assinged to:
         </Heading>
         {project.assignedUsersList.map((user) => (
-          <Box key={user.id}>
+          <Flex key={user.id} flexDir="row">
             <UserAvatar src={user.photoURL} />
-          </Box>
+          </Flex>
         ))}
       </CardFooter>
     </Card>
