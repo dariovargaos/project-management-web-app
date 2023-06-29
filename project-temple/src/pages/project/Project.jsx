@@ -18,9 +18,9 @@ export default function Project() {
     return <Text>Loading...</Text>;
   }
   return (
-    <SimpleGrid columns="2" spacing={10}>
+    <SimpleGrid columns="2" spacing={10} minChildWidth="250px">
       <ProjectSummary project={document} />
-      <ProjectComments />
+      <ProjectComments project={document} />
     </SimpleGrid>
   );
 }
