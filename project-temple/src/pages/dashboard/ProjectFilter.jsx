@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Box, Button, Text, Flex, Divider } from "@chakra-ui/react";
+import { Box, Button, Text, Flex } from "@chakra-ui/react";
 
 const filterList = [
   "all",
@@ -10,12 +9,9 @@ const filterList = [
   "sales",
 ];
 
-export default function ProjectFilter() {
-  const [currentFilter, setCurrentFilter] = useState("all");
-
+export default function ProjectFilter({ currentFilter, changeFilter }) {
   const handleClick = (newFilter) => {
-    console.log(newFilter);
-    setCurrentFilter(newFilter);
+    changeFilter(newFilter);
   };
 
   return (
