@@ -21,7 +21,7 @@ export default function ProjectSummary({ project }) {
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
-  const handleDelete = (e) => {
+  const handleDelete = () => {
     deleteDocument(project.id);
     navigate("/");
   };

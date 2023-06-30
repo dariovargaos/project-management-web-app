@@ -1,8 +1,9 @@
 import { useCollection } from "../../hooks/useCollection";
-
-import ProjectList from "../../components/ProjectList";
-
 import { Box, Heading, Text } from "@chakra-ui/react";
+
+//components
+import ProjectList from "../../components/ProjectList";
+import ProjectFilter from "./ProjectFilter";
 
 export default function Dashboard() {
   const { documents, error } = useCollection("projects");
@@ -11,6 +12,7 @@ export default function Dashboard() {
     <Box>
       <Heading>Dashboard</Heading>
       {error && <Text>{error}</Text>}
+      {documents && <ProjectFilter />}
       {documents && <ProjectList projects={documents} />}
     </Box>
   );
