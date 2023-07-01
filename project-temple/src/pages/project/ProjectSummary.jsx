@@ -15,6 +15,7 @@ import {
 
 //components
 import UserAvatar from "../../components/UserAvatar";
+import ProgressBar from "./ProgressBar";
 
 export default function ProjectSummary({ project }) {
   const { deleteDocument } = useFirestore("projects");
@@ -53,6 +54,7 @@ export default function ProjectSummary({ project }) {
           Delete project
         </Button>
       )}
+      <ProgressBar project={project} />
     </Box>
   );
 }

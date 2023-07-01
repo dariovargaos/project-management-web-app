@@ -17,6 +17,17 @@ const fonts = {
   body: "Tahoma",
 };
 
+// const components = {
+//   Progress: {
+//     baseStyle: {
+//       filledTrack: (props) => ({
+//         bg: getColor(props.value),
+//         transition: "width 0.5s ease-out",
+//       }),
+//     },
+//   },
+// };
+
 const theme = extendTheme({ colors, fonts });
 
 ReactDOM.createRoot(document.getElementById("root")).render(

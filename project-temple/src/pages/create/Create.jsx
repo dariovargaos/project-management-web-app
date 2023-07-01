@@ -85,6 +85,7 @@ export default function Create() {
       comments: [],
       createdBy: createdBy,
       assignedUsersList,
+      progress: 0,
     };
 
     await addDocument(project);
