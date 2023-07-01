@@ -2,6 +2,7 @@ import { useState } from "react";
 import { timestamp } from "../../firebase/config";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import {
   Box,
   Heading,
@@ -9,10 +10,7 @@ import {
   FormLabel,
   Textarea,
   Button,
-  List,
-  ListItem,
   Text,
-  Flex,
   Card,
   CardHeader,
   CardBody,
@@ -58,7 +56,11 @@ export default function ProjectComments({ project }) {
               <Text>{comment.displayName}</Text>
             </CardHeader>
             <CardBody>
-              <Text color="color.textColort">date here</Text>
+              <Text color="color.textColort">
+                {formatDistanceToNow(comment.createdAt.toDate(), {
+                  addSuffix: true,
+                })}
+              </Text>
               <Text color="color.textColort">{comment.content}</Text>
             </CardBody>
           </Card>
