@@ -18,16 +18,14 @@ import {
 import UserAvatar from "../../components/UserAvatar";
 import ProgressBar from "./ProgressBar";
 import EditForm from "./EditForm";
+import ProjectLogs from "./ProjectLogs";
 
 export default function ProjectSummary({ project }) {
   const [showEdit, setShowEdit] = useState(false);
+  const [showLogs, setShowLogs] = useState(false);
   const { deleteDocument } = useFirestore("projects");
   const { user } = useAuthContext();
   const navigate = useNavigate();
-
-  // const closeEdit = () => {
-  //   setShowEdit(false);
-  // };
 
   const handleDelete = () => {
     deleteDocument(project.id);
@@ -61,6 +59,11 @@ export default function ProjectSummary({ project }) {
           Edit project
         </Button>
       )}
+
+      <Button onClick={() => setShowLogs(true)} colorScheme="whatsapp">
+        Show logs
+      </Button>
+
       {user.uid === project.createdBy.id && (
         <Button colorScheme="whatsapp" variant="ghost" onClick={handleDelete}>
           Delete project
@@ -73,6 +76,14 @@ export default function ProjectSummary({ project }) {
           project={project}
           isOpen={showEdit}
           onClose={() => setShowEdit(false)}
+        />
+      )}
+
+      {showLogs && (
+        <ProjectLogs
+          project={project}
+          isOpen={showLogs}
+          onClose={() => setShowLogs(false)}
         />
       )}
     </Box>

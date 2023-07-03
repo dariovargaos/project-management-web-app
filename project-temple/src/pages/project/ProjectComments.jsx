@@ -56,12 +56,12 @@ export default function ProjectComments({ project }) {
               <Text>{comment.displayName}</Text>
             </CardHeader>
             <CardBody>
-              <Text color="color.textColort">
+              <Text color="color.textColor">
                 {formatDistanceToNow(comment.createdAt.toDate(), {
                   addSuffix: true,
                 })}
               </Text>
-              <Text color="color.textColort">{comment.content}</Text>
+              <Text color="color.textColor">{comment.content}</Text>
             </CardBody>
           </Card>
         ))}

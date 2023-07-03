@@ -86,6 +86,7 @@ export default function Create() {
       createdBy: createdBy,
       assignedUsersList,
       progress: 0,
+      logs: [],
     };
 
     await addDocument(project);
