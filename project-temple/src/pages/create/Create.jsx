@@ -95,7 +95,7 @@ export default function Create() {
     }
   };
   return (
-    <Box display="flex" justifyContent="center" mt="-10">
+    <Box display="flex" justifyContent="center">
       <Box
         bg="#fff"
         border="1px solid #ddd"
