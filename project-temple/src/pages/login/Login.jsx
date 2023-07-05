@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
 import {
+  Flex,
   Box,
   Button,
   FormLabel,
@@ -20,15 +21,15 @@ export default function Login() {
     login(email, password);
   };
   return (
-    <Box display="flex" justifyContent="center">
+    <Flex justifyContent="center">
       <Box
-        maxW="480px"
+        minW="400px"
         bg="#fff"
         border="1px solid #ddd"
         p="40px"
         boxShadow="3px 3px 5px rgba(0,0,0, 0.05)"
       >
-        <form onSubmit={handleSubmit} style={{ width: "380px" }}>
+        <form onSubmit={handleSubmit}>
           <Heading as="h2" fontSize="1.5em" mb="8px">
             Log in
           </Heading>
@@ -63,6 +64,6 @@ export default function Login() {
           {error && <Text>{error}</Text>}
         </form>
       </Box>
-    </Box>
+    </Flex>
   );
 }

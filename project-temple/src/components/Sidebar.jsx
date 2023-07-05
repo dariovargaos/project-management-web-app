@@ -4,8 +4,8 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { CalendarIcon } from "@chakra-ui/icons";
 
 // images
-import DashboardIcon from "../assets/dashboard_icon.svg";
-import AddIcon from "../assets/add_icon.svg";
+import DashboardIcon from "/dashboard_icon.svg";
+import AddIcon from "/add_icon.svg";
 import UserAvatar from "./UserAvatar";
 
 export default function Sidebar() {

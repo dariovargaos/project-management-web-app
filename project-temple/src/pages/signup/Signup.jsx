@@ -54,7 +54,7 @@ export default function Signup() {
   return (
     <Box display="flex" justifyContent="center">
       <Box
-        maxW="480px"
+        minW="400px"
         bg="#fff"
         border="1px solid #ddd"
         p="40px"

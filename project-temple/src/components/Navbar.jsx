@@ -4,7 +4,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { Button, Flex, Heading, Spacer, Image } from "@chakra-ui/react";
 
 //images
-import Temple from "../assets/temple.svg";
+import Temple from "/temple.svg";
 
 export default function Navbar() {
   const { logout, isPending } = useLogout();
@@ -18,8 +18,20 @@ export default function Navbar() {
 
       <Spacer />
 
-      {!user && <Link to="/login">Login</Link>}
-      {!user && <Link to="/signup">Signup</Link>}
+      {!user && (
+        <Link to="/login">
+          <Button variant="link" colorScheme="black">
+            Login
+          </Button>
+        </Link>
+      )}
+      {!user && (
+        <Link to="/signup">
+          <Button variant="link" colorScheme="black">
+            Signup
+          </Button>
+        </Link>
+      )}
       {!isPending && user && <Button onClick={logout}>Logout</Button>}
       {isPending && user && <Button disabled>Logging out...</Button>}
     </Flex>
