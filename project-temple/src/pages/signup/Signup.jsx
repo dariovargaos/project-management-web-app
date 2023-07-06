@@ -7,6 +7,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  FormHelperText,
   Heading,
   Input,
   Text,
@@ -91,9 +92,13 @@ export default function Signup() {
               value={displayName}
             />
           </FormControl>
-          <FormControl isRequired isInvalid={thumbnailErorr} mb="10px">
+          <FormControl isInvalid={thumbnailErorr} mb="10px">
             <FormLabel>profile thumbnail:</FormLabel>
-            <Input type="file" required onChange={handleFileChange} />
+            <Input type="file" onChange={handleFileChange} />
+            <FormHelperText>
+              If you do not want to upload your picture, we will upload a
+              default one for you.
+            </FormHelperText>
             <FormErrorMessage>{thumbnailErorr}</FormErrorMessage>
           </FormControl>
           {!isPending && (

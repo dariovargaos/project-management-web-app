@@ -36,7 +36,7 @@ export default function OnlineUsers() {
           >
             <ListItem>{user.displayName}</ListItem>
             <Avatar>
-              <UserAvatar src={user.photoURL} />
+              <UserAvatar src={user.photoURL} name={user.displayName} />
               {user.online && (
                 <AvatarBadge
                   width="1.1em"

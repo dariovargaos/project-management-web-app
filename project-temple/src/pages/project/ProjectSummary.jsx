@@ -49,7 +49,7 @@ export default function ProjectSummary({ project }) {
           </Heading>
           {project.assignedUsersList.map((user) => (
             <Flex key={user.id} flexDir="row">
-              <UserAvatar src={user.photoURL} />
+              <UserAvatar src={user.photoURL} name={user.displayName} />
             </Flex>
           ))}
         </CardFooter>

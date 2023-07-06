@@ -26,11 +26,14 @@ export const useSignup = () => {
       }
 
       // upload user thumbnail
-      const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`;
-      const imgRef = ref(storage, uploadPath);
-      const uploadTask = uploadBytes(imgRef, thumbnail);
-      const uploadSnapshot = await uploadTask;
-      const imgUrl = await getDownloadURL(uploadSnapshot.ref);
+      let imgUrl = null;
+      if (thumbnail) {
+        const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`;
+        const imgRef = ref(storage, uploadPath);
+        const uploadTask = uploadBytes(imgRef, thumbnail);
+        const uploadSnapshot = await uploadTask;
+        imgUrl = await getDownloadURL(uploadSnapshot.ref);
+      }
 
       //add display name to user
       await updateProfile(auth.currentUser, {
