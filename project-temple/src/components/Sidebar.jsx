@@ -19,7 +19,7 @@ export default function Sidebar() {
         p="40px 30px"
         borderBottom="1px solid rgba(255,255,255, 0.2)"
       >
-        <UserAvatar src={user.photoURL} />
+        <UserAvatar src={user.photoURL} name={user.displayName} />
         <Text>Hey {user.displayName}</Text>
       </Box>
       <ListItem>

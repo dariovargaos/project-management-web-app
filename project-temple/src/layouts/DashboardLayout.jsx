@@ -11,7 +11,7 @@ export default function DashboardLayout() {
   const { user } = useAuthContext();
   return (
     user && (
-      <Grid templateColumns="repeat(6, 1fr)" bg="gray.50">
+      <Grid templateColumns="repeat(6, 1fr)" bg="gray.100">
         <GridItem
           as="aside"
           colSpan={{ base: 6, lg: 2, xl: 1 }}

@@ -95,13 +95,13 @@ export default function Create() {
     }
   };
   return (
-    <Box display="flex" justifyContent="center">
+    <Box display="flex" justifyContent="center" mb="20px">
       <Box
         bg="#fff"
         border="1px solid #ddd"
         p="40px"
         boxShadow="3px 3px 5px rgba(0,0,0, 0.05)"
-        minW="100%"
+        minW="80%"
       >
         <Heading fontSize="2xl" mb="20px">
           Create a new project
@@ -134,6 +134,7 @@ export default function Create() {
               type="date"
               onChange={(e) => setDueDate(e.target.value)}
               value={dueDate}
+              min={new Date().toISOString().split("T")[0]}
             />
           </FormControl>
           <FormControl isRequired mb="20px">
