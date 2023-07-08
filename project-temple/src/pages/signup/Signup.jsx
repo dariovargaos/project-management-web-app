@@ -11,7 +11,17 @@ import {
   Heading,
   Input,
   Text,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
 } from "@chakra-ui/react";
+import {
+  EmailIcon,
+  LockIcon,
+  AtSignIcon,
+  ViewIcon,
+  ViewOffIcon,
+} from "@chakra-ui/icons";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -19,11 +29,16 @@ export default function Signup() {
   const [displayName, setDisplayName] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
   const [thumbnailErorr, setThumbnailError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const { signup, isPending, error } = useSignup();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     signup(email, password, displayName, thumbnail);
+  };
+
+  const handleClick = () => {
+    setShowPassword(!showPassword);
   };
 
   const handleFileChange = (e) => {
@@ -67,30 +82,54 @@ export default function Signup() {
           </Heading>
           <FormControl isRequired mb="10px">
             <FormLabel>email:</FormLabel>
-            <Input
-              type="email"
-              required
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
+            <InputGroup>
+              <InputLeftElement>
+                <EmailIcon />
+              </InputLeftElement>
+              <Input
+                type="email"
+                required
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </InputGroup>
           </FormControl>
           <FormControl isRequired mb="10px">
             <FormLabel>password:</FormLabel>
-            <Input
-              type="password"
-              required
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
+            <InputGroup>
+              <InputLeftElement>
+                <LockIcon />
+              </InputLeftElement>
+              <Input
+                type={showPassword ? "text" : "password"}
+                required
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+              <InputRightElement>
+                <Button
+                  variant="ghost"
+                  colorScheme="whatsapp"
+                  onClick={handleClick}
+                >
+                  {showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
           </FormControl>
           <FormControl isRequired mb="10px">
             <FormLabel>display name:</FormLabel>
-            <Input
-              type="text"
-              required
-              onChange={(e) => setDisplayName(e.target.value)}
-              value={displayName}
-            />
+            <InputGroup>
+              <InputLeftElement>
+                <AtSignIcon />
+              </InputLeftElement>
+              <Input
+                type="text"
+                required
+                onChange={(e) => setDisplayName(e.target.value)}
+                value={displayName}
+              />
+            </InputGroup>
           </FormControl>
           <FormControl isInvalid={thumbnailErorr} mb="10px">
             <FormLabel>profile thumbnail:</FormLabel>

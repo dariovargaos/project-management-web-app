@@ -9,16 +9,25 @@ import {
   Heading,
   Input,
   Text,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
 } from "@chakra-ui/react";
+import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { login, error, isPending } = useLogin();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password);
+  };
+
+  const handleClick = () => {
+    setShowPassword(!showPassword);
   };
   return (
     <Flex justifyContent="center">
@@ -35,21 +44,40 @@ export default function Login() {
           </Heading>
           <FormControl isRequired mb="10px">
             <FormLabel>email:</FormLabel>
-            <Input
-              type="email"
-              required
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
+            <InputGroup>
+              <InputLeftElement>
+                <EmailIcon />
+              </InputLeftElement>
+              <Input
+                type="email"
+                required
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </InputGroup>
           </FormControl>
           <FormControl isRequired mb="10px">
             <FormLabel>password:</FormLabel>
-            <Input
-              type="password"
-              required
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
+            <InputGroup>
+              <InputLeftElement>
+                <LockIcon />
+              </InputLeftElement>
+              <Input
+                type={showPassword ? "text" : "password"}
+                required
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+              <InputRightElement>
+                <Button
+                  colorScheme="whatsapp"
+                  variant="ghost"
+                  onClick={handleClick}
+                >
+                  {showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
           </FormControl>
           {!isPending && (
             <Button colorScheme="whatsapp" type="submit">
