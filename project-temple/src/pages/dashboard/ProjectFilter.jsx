@@ -1,4 +1,14 @@
-import { Box, Button, Text, Flex } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Text,
+  Flex,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+} from "@chakra-ui/react";
 
 const filterList = [
   "all",
@@ -15,19 +25,17 @@ export default function ProjectFilter({ currentFilter, changeFilter }) {
   };
 
   return (
-    <Box>
-      <Flex as="nav" align="center" bg="white" gap={4}>
-        <Text>Filter by:</Text>
-        {filterList.map((filter) => (
-          <Button
-            key={filter}
-            onClick={() => handleClick(filter)}
-            variant="link"
-          >
-            {filter}
-          </Button>
-        ))}
-      </Flex>
-    </Box>
+    <Flex align="center">
+      <Text>Filter by:</Text>
+      <Tabs colorScheme="whatsapp">
+        <TabList>
+          {filterList.map((filter) => (
+            <Tab key={filter} onClick={() => handleClick(filter)}>
+              {filter}
+            </Tab>
+          ))}
+        </TabList>
+      </Tabs>
+    </Flex>
   );
 }

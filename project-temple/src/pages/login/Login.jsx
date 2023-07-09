@@ -85,9 +85,11 @@ export default function Login() {
             </Button>
           )}
           {isPending && (
-            <Button colorScheme="whatsapp" disabled>
-              Loading
-            </Button>
+            <Button
+              colorScheme="whatsapp"
+              isLoading
+              loadingText="Logging in..."
+            ></Button>
           )}
           {error && <Text>{error}</Text>}
         </form>

@@ -13,7 +13,6 @@ import {
   FormLabel,
   Text,
   Input,
-  FormHelperText,
   Textarea,
   Button,
 } from "@chakra-ui/react";
@@ -125,7 +124,6 @@ export default function Create() {
               value={details}
               resize="none"
             />
-            <FormHelperText>Enter a descriptive project name.</FormHelperText>
           </FormControl>
           <FormControl isRequired mb="20px">
             <FormLabel>Due date:</FormLabel>
@@ -158,7 +156,7 @@ export default function Create() {
             </Text>
           )}
 
-          <Button colorScheme="twitter" type="submit">
+          <Button colorScheme="whatsapp" type="submit">
             Add project
           </Button>
         </form>

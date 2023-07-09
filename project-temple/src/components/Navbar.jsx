@@ -32,8 +32,14 @@ export default function Navbar() {
           </Button>
         </Link>
       )}
-      {!isPending && user && <Button onClick={logout}>Logout</Button>}
-      {isPending && user && <Button disabled>Logging out...</Button>}
+      {!isPending && user && (
+        <Button onClick={logout} variant="link" colorScheme="black">
+          Logout
+        </Button>
+      )}
+      {isPending && user && (
+        <Button variant="link" isLoading loadingText="Logging out..."></Button>
+      )}
     </Flex>
   );
 }

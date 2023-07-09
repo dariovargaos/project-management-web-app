@@ -146,9 +146,12 @@ export default function Signup() {
             </Button>
           )}
           {isPending && (
-            <Button colorScheme="whatsapp" type="submit" disabled>
-              Loading
-            </Button>
+            <Button
+              colorScheme="whatsapp"
+              type="submit"
+              isLoading
+              loadingText="Signing up..."
+            ></Button>
           )}
           {error && <Text>{error}</Text>}
         </form>

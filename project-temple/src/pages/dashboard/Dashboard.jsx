@@ -43,7 +43,7 @@ export default function Dashboard() {
 
   return (
     <Box>
-      <Heading>Dashboard</Heading>
+      <Heading size="lg">Dashboard</Heading>
       {error && <Text>{error}</Text>}
       {documents && (
         <ProjectFilter
