@@ -32,18 +32,24 @@ export default function ProjectSummary({ project }) {
     navigate("/");
   };
   return (
-    <Box>
+    <Flex flexDir="column" gap="10px">
       <Card maxH="400px">
         <CardHeader>
-          <Heading size="md">{project.name}</Heading>
-          <Text>By {project.createdBy.displayName}</Text>
+          <Heading size="md" color="color.headingColor">
+            {project.name}
+          </Heading>
+          <Text color="color.headingColor">
+            By {project.createdBy.displayName}
+          </Text>
         </CardHeader>
         <CardBody>
-          <Text>Project due by: {project.dueDate.toDate().toDateString()}</Text>
-          <Text>{project.details}</Text>
+          <Text color="color.textColor">
+            Project due by: {project.dueDate.toDate().toDateString()}
+          </Text>
+          <Text color="color.textColor">{project.details}</Text>
         </CardBody>
         <CardFooter display="flex" flexDirection="column">
-          <Heading size="md" color="color.headingColor">
+          <Heading size="sm" color="color.headingColor">
             {" "}
             Project is assinged to:
           </Heading>
@@ -54,21 +60,37 @@ export default function ProjectSummary({ project }) {
           ))}
         </CardFooter>
       </Card>
-      {user.uid === project.createdBy.id && (
-        <Button onClick={() => setShowEdit(true)} colorScheme="whatsapp">
-          Edit project
-        </Button>
-      )}
+      <Flex gap="12px">
+        {user.uid === project.createdBy.id && (
+          <Button
+            size="sm"
+            onClick={() => setShowEdit(true)}
+            colorScheme="whatsapp"
+          >
+            Edit project
+          </Button>
+        )}
 
-      <Button onClick={() => setShowLogs(true)} colorScheme="whatsapp">
-        Show logs
-      </Button>
-
-      {user.uid === project.createdBy.id && (
-        <Button colorScheme="whatsapp" variant="ghost" onClick={handleDelete}>
-          Delete project
+        <Button
+          size="sm"
+          onClick={() => setShowLogs(true)}
+          colorScheme="whatsapp"
+        >
+          Show logs
         </Button>
-      )}
+
+        {user.uid === project.createdBy.id && (
+          <Button
+            size="sm"
+            colorScheme="whatsapp"
+            variant="ghost"
+            onClick={handleDelete}
+          >
+            Delete project
+          </Button>
+        )}
+      </Flex>
+
       <ProgressBar project={project} />
 
       {showEdit && (
@@ -86,6 +108,6 @@ export default function ProjectSummary({ project }) {
           onClose={() => setShowLogs(false)}
         />
       )}
-    </Box>
+    </Flex>
   );
 }

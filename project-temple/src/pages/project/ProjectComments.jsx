@@ -4,7 +4,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import {
-  Box,
+  Flex,
   Heading,
   FormControl,
   FormLabel,
@@ -43,17 +43,17 @@ export default function ProjectComments({ project }) {
     }
   };
   return (
-    <Box>
-      <Heading size="sm" color="color.headingColor">
+    <Flex flexDir="column" gap="8px">
+      <Heading size="md" color="color.headingColor">
         Project Comments
       </Heading>
 
       {project.comments.length > 0 &&
         project.comments.map((comment) => (
-          <Card key={comment.id} mb="10px">
+          <Card key={comment.id}>
             <CardHeader display="flex" alignItems="center" gap="8px">
               <UserAvatar src={comment.photoURL} />
-              <Text>{comment.displayName}</Text>
+              <Text color="color.headingColor">{comment.displayName}</Text>
             </CardHeader>
             <CardBody>
               <Text color="color.textColor">
@@ -78,6 +78,6 @@ export default function ProjectComments({ project }) {
         </FormControl>
         <Button type="submit">Add Comment</Button>
       </form>
-    </Box>
+    </Flex>
   );
 }
