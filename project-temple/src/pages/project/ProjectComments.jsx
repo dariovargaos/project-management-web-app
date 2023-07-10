@@ -51,8 +51,13 @@ export default function ProjectComments({ project }) {
       {project.comments.length > 0 &&
         project.comments.map((comment) => (
           <Card key={comment.id}>
-            <CardHeader display="flex" alignItems="center" gap="8px">
-              <UserAvatar src={comment.photoURL} />
+            <CardHeader
+              display="flex"
+              alignItems="center"
+              gap="8px"
+              wordBreak="break-word"
+            >
+              <UserAvatar src={comment.photoURL} name={comment.displayName} />
               <Text color="color.headingColor">{comment.displayName}</Text>
             </CardHeader>
             <CardBody>

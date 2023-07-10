@@ -3,7 +3,6 @@ import { useFirestore } from "../../hooks/useFirestore";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import {
-  Box,
   Card,
   CardHeader,
   CardBody,
@@ -12,6 +11,7 @@ import {
   Text,
   Flex,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 
 //components
@@ -26,10 +26,18 @@ export default function ProjectSummary({ project }) {
   const { deleteDocument } = useFirestore("projects");
   const { user } = useAuthContext();
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleDelete = () => {
     deleteDocument(project.id);
     navigate("/");
+    toast({
+      title: "Project deleted.",
+      description: "Successfully deleted the project.",
+      status: "success",
+      duration: "5000",
+      isClosable: true,
+    });
   };
   return (
     <Flex flexDir="column" gap="10px">
@@ -48,9 +56,8 @@ export default function ProjectSummary({ project }) {
           </Text>
           <Text color="color.textColor">{project.details}</Text>
         </CardBody>
-        <CardFooter display="flex" flexDirection="column">
+        <CardFooter display="flex" flexDirection="column" gap="10px">
           <Heading size="sm" color="color.headingColor">
-            {" "}
             Project is assinged to:
           </Heading>
           <Flex gap="10px" flexWrap="wrap">

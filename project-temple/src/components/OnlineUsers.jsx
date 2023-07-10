@@ -7,6 +7,7 @@ import {
   ListItem,
   Avatar,
   AvatarBadge,
+  Flex,
 } from "@chakra-ui/react";
 
 // components
@@ -15,14 +16,9 @@ import UserAvatar from "./UserAvatar";
 export default function OnlineUsers() {
   const { error, documents } = useCollection("users");
   return (
-    <List color="black" fontSize="1.2em" spacing={4}>
-      <Box
-        fontWeight="bold"
-        textAlign="center"
-        borderBottom="1px solid black"
-        letterSpacing="1px"
-      >
-        <Heading>All Users</Heading>
+    <Flex flexDir="column" gap="10px" wordBreak="break-word">
+      <Box textAlign="center" borderBottom="1px solid black">
+        <Heading size="lg">All Users</Heading>
         {error && <Box>{error}</Box>}
       </Box>
       {documents &&
@@ -47,6 +43,6 @@ export default function OnlineUsers() {
             </Avatar>
           </List>
         ))}
-    </List>
+    </Flex>
   );
 }
