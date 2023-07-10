@@ -53,11 +53,15 @@ export default function ProjectSummary({ project }) {
             {" "}
             Project is assinged to:
           </Heading>
-          {project.assignedUsersList.map((user) => (
-            <Flex key={user.id} flexDir="row">
-              <UserAvatar src={user.photoURL} name={user.displayName} />
-            </Flex>
-          ))}
+          <Flex gap="10px" flexWrap="wrap">
+            {project.assignedUsersList.map((user) => (
+              <UserAvatar
+                key={user.id}
+                src={user.photoURL}
+                name={user.displayName}
+              />
+            ))}
+          </Flex>
         </CardFooter>
       </Card>
       <Flex gap="12px">

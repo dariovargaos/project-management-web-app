@@ -15,6 +15,7 @@ import {
   Input,
   Textarea,
   Button,
+  useToast,
 } from "@chakra-ui/react";
 
 const categories = [
@@ -30,6 +31,7 @@ export default function Create() {
   const { documents } = useCollection("users");
   const [users, setUsers] = useState([]);
   const { user } = useAuthContext();
+  const toast = useToast();
 
   //form fields
   const [name, setName] = useState("");
@@ -91,6 +93,12 @@ export default function Create() {
     await addDocument(project);
     if (!response.error) {
       navigate("/");
+      toast({
+        title: "Project created.",
+        status: "success",
+        duration: "5000",
+        isClosable: true,
+      });
     }
   };
   return (

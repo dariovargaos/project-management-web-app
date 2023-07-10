@@ -4,12 +4,14 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { useAuthContext } from "./useAuthContext";
+import { useToast } from "@chakra-ui/react";
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const { dispatch } = useAuthContext();
+  const toast = useToast();
 
   const signup = async (email, password, displayName, thumbnail) => {
     setError(null);
@@ -56,6 +58,14 @@ export const useSignup = () => {
         setError(null);
         setIsPending(false);
       }
+
+      toast({
+        title: "Account created.",
+        description: "You've successfully created account.",
+        status: "success",
+        duration: "5000",
+        isClosable: true,
+      });
     } catch (err) {
       if (!isCancelled) {
         console.log(err.message);

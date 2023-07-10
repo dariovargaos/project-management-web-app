@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import UserAvatar from "./UserAvatar";
 import {
   Box,
+  Flex,
   SimpleGrid,
   Text,
   Card,
@@ -11,6 +12,7 @@ import {
   List,
   ListItem,
   Heading,
+  Divider,
 } from "@chakra-ui/react";
 
 export default function ProjectList({ projects }) {
@@ -22,13 +24,18 @@ export default function ProjectList({ projects }) {
           <Link to={`/projects/${project.id}`} key={project.id}>
             <Card>
               <CardHeader>
-                <Heading fontSize="1.5em">{project.name}</Heading>
+                <Heading size="md" color="color.headingColor">
+                  {project.name}
+                </Heading>
               </CardHeader>
-              <CardBody borderBottom="1px solid black" w="80%">
-                <Text>Due by: {project.dueDate.toDate().toDateString()}</Text>
+              <CardBody>
+                <Text color="color.textColor">
+                  Due by: {project.dueDate.toDate().toDateString()}
+                </Text>
               </CardBody>
+              <Divider />
               <CardFooter>
-                <List>
+                <List display="flex" flexWrap="wrap" gap="6px">
                   {project.assignedUsersList.map((user) => (
                     <ListItem key={user.photoURL}>
                       <UserAvatar src={user.photoURL} name={user.displayName} />

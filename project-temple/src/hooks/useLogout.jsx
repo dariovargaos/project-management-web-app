@@ -4,12 +4,14 @@ import { updateDoc, doc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import { useAuthContext } from "./useAuthContext";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@chakra-ui/react";
 
 export const useLogout = () => {
   const [isCancelled, setIsCancelled] = useState(false);
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const { dispatch, user } = useAuthContext();
+  const toast = useToast();
 
   const navigate = useNavigate();
 
@@ -36,6 +38,13 @@ export const useLogout = () => {
         setIsPending(false);
         navigate("/");
       }
+
+      toast({
+        title: "Logged out.",
+        status: "success",
+        duration: "5000",
+        isClosable: true,
+      });
     } catch (err) {
       if (!isCancelled) {
         console.log(err.message);
