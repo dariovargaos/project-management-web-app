@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import {
   Flex,
@@ -93,6 +95,9 @@ export default function Login() {
           )}
           {error && <Text>{error}</Text>}
         </form>
+        <Link as={RouterLink} to="/resetpassword" color="whatsapp.500">
+          Forgot password?
+        </Link>
       </Box>
     </Flex>
   );

@@ -19,6 +19,7 @@ import Home from "./layouts/Home";
 import LoginSignupLayout from "./layouts/LoginSignupLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 import UserProfile from "./pages/userProfile/UserProfile";
+import ResetPassword from "./components/ResetPassword";
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -56,6 +57,10 @@ function App() {
           <Route
             path="signup"
             element={!user ? <Signup /> : <Navigate to="/" />}
+          />
+          <Route
+            path="resetpassword"
+            element={!user ? <ResetPassword /> : <Navigate to="/" />}
           />
         </Route>
       </Route>
