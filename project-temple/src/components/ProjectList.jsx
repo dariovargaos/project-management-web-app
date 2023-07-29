@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import UserAvatar from "./UserAvatar";
 import {
   Box,
-  Flex,
   SimpleGrid,
   Text,
   Card,
@@ -19,7 +18,7 @@ export default function ProjectList({ projects }) {
   return (
     <Box>
       {projects.length === 0 && <Text>No projects yet!</Text>}
-      <SimpleGrid p="10px" spacing={10} minChildWidth="250px">
+      <SimpleGrid p="10px" spacing={8} minChildWidth="250px">
         {projects.map((project) => (
           <Link to={`/projects/${project.id}`} key={project.id}>
             <Card>
@@ -37,7 +36,7 @@ export default function ProjectList({ projects }) {
               <CardFooter>
                 <List display="flex" flexWrap="wrap" gap="6px">
                   {project.assignedUsersList.map((user) => (
-                    <ListItem key={user.photoURL}>
+                    <ListItem key={user.id}>
                       <UserAvatar src={user.photoURL} name={user.displayName} />
                     </ListItem>
                   ))}

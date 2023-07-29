@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCollection } from "../hooks/useCollection";
 
 import {
@@ -8,6 +9,7 @@ import {
   Avatar,
   AvatarBadge,
   Flex,
+  Button,
 } from "@chakra-ui/react";
 
 // components
@@ -15,6 +17,8 @@ import UserAvatar from "./UserAvatar";
 
 export default function OnlineUsers() {
   const { error, documents } = useCollection("users");
+
+  //probat za svakog usera napravit link prvo umjesto liste
   return (
     <Flex flexDir="column" gap="10px" wordBreak="break-word">
       <Box textAlign="center" borderBottom="1px solid black">
@@ -30,7 +34,12 @@ export default function OnlineUsers() {
             alignItems="center"
             gap={4}
           >
-            <ListItem>{user.displayName}</ListItem>
+            <Link to={`/user/${user.id}`}>
+              <Button variant="link">
+                <ListItem color="black">{user.displayName}</ListItem>
+              </Button>
+            </Link>
+
             <Avatar>
               <UserAvatar src={user.photoURL} name={user.displayName} />
               {user.online && (

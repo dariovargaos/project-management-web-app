@@ -18,6 +18,7 @@ import RootLayout from "./layouts/RootLayout";
 import Home from "./layouts/Home";
 import LoginSignupLayout from "./layouts/LoginSignupLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
+import UserProfile from "./pages/userProfile/UserProfile";
 
 function App() {
   const { user, authIsReady } = useAuthContext();
@@ -40,6 +41,10 @@ function App() {
           <Route
             path="projects/:id"
             element={user ? <Project /> : <Navigate to="/" />}
+          />
+          <Route
+            path="user/:id"
+            element={user ? <UserProfile /> : <Navigate to="/" />}
           />
         </Route>
 

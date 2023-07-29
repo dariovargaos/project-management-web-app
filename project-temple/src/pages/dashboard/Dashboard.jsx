@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCollection } from "../../hooks/useCollection";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text, Progress } from "@chakra-ui/react";
 
 //components
 import ProjectList from "../../components/ProjectList";
@@ -44,6 +44,9 @@ export default function Dashboard() {
   return (
     <Box>
       <Heading size="lg">Dashboard</Heading>
+      {!documents && (
+        <Progress size="sm" isIndeterminate colorScheme="whatsapp" />
+      )}
       {error && <Text>{error}</Text>}
       {documents && (
         <ProjectFilter

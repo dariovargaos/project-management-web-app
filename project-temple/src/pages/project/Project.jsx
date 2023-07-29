@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDocument } from "../../hooks/useDocument";
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { SimpleGrid, Text, Progress } from "@chakra-ui/react";
 
 //components
 import ProjectSummary from "./ProjectSummary";
@@ -15,7 +15,7 @@ export default function Project() {
   }
 
   if (!document) {
-    return <Text>Loading...</Text>;
+    return <Progress size="sm" isIndeterminate colorScheme="whatsapp" />;
   }
   return (
     <SimpleGrid columns="2" spacing={10} minChildWidth="250px">
