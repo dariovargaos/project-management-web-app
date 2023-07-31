@@ -105,6 +105,7 @@ export default function Signup() {
                 required
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                minLength="8"
               />
               <InputRightElement>
                 <Button
@@ -116,6 +117,9 @@ export default function Signup() {
                 </Button>
               </InputRightElement>
             </InputGroup>
+            <FormHelperText>
+              Password must contain at least 8 characters.
+            </FormHelperText>
           </FormControl>
           <FormControl isRequired mb="10px">
             <FormLabel>display name:</FormLabel>
@@ -140,8 +144,8 @@ export default function Signup() {
             <FormLabel>profile thumbnail:</FormLabel>
             <Input type="file" onChange={handleFileChange} />
             <FormHelperText>
-              If you do not want to upload your picture, we will upload a
-              default one for you.
+              If you do not want to upload your picture, we will upload an
+              anonymous one for you.
             </FormHelperText>
             <FormErrorMessage>{thumbnailErorr}</FormErrorMessage>
           </FormControl>

@@ -83,7 +83,7 @@ export default function Login() {
           </FormControl>
           {!isPending && (
             <Button colorScheme="whatsapp" type="submit">
-              Login
+              Log in
             </Button>
           )}
           {isPending && (

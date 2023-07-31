@@ -15,7 +15,7 @@ export default function DashboardLayout() {
         <GridItem
           as="aside"
           colSpan={{ base: 6, lg: 2, xl: 1 }}
-          bg="whatsapp.300"
+          bg="whatsapp.500"
           minH={{ lg: "100vh" }}
           p={{ base: "20px", lg: "30px" }}
         >

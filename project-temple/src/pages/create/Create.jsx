@@ -36,7 +36,7 @@ export default function Create() {
   //form fields
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  const [dueDate, setDueDate] = useState(new Date());
   const [category, setCategory] = useState("");
   const [assignedUsers, setAssignedUsers] = useState([]);
   const [formError, setFormError] = useState(null);
@@ -82,7 +82,7 @@ export default function Create() {
       name: name,
       details: details,
       category: category.value,
-      dueDate: timestamp.fromDate(new Date(dueDate)),
+      dueDate: timestamp.fromDate(dueDate),
       comments: [],
       createdBy: createdBy,
       assignedUsersList,
@@ -138,8 +138,8 @@ export default function Create() {
             <Input
               required
               type="date"
-              onChange={(e) => setDueDate(e.target.value)}
-              value={dueDate}
+              onChange={(e) => setDueDate(new Date(e.target.value))}
+              value={dueDate.toISOString().split("T")[0]}
               min={new Date().toISOString().split("T")[0]}
             />
           </FormControl>

@@ -10,6 +10,8 @@ import {
   FormControl,
   Button,
   useToast,
+  FormHelperText,
+  Heading,
 } from "@chakra-ui/react";
 
 export default function ResetPassword() {
@@ -52,18 +54,25 @@ export default function ResetPassword() {
         p="40px"
         boxShadow="3px 3px 5px rgba(0,0,0, 0.05)"
       >
-        <form onSubmit={handleResetPassword}>
+        <form
+          onSubmit={handleResetPassword}
+          style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+        >
+          <Heading size="md">Recover your password</Heading>
           <FormControl>
-            <FormLabel>enter your email:</FormLabel>
             <Input
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               required
+              placeholder="youremail@email.com"
             />
+            <FormHelperText>
+              We'll send a link to your email to create a new one.
+            </FormHelperText>
           </FormControl>
-          <Button type="submit" colorScheme="whatsapp" variant="link">
-            Send password reset link
+          <Button type="submit" colorScheme="whatsapp">
+            Send link
           </Button>
         </form>
       </Box>

@@ -1,5 +1,5 @@
-import { Box, Text, List, ListItem, Button, Flex } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { Box, Text, Button, Flex, Link } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { CalendarIcon, AddIcon } from "@chakra-ui/icons";
 
@@ -23,7 +23,7 @@ export default function Sidebar() {
         <Text fontWeight="bold">Hey {user.displayName}</Text>
       </Box>
 
-      <NavLink to="/">
+      <Link as={RouterLink} to="/">
         <Button
           leftIcon={<CalendarIcon />}
           variant="link"
@@ -32,8 +32,8 @@ export default function Sidebar() {
         >
           Dashboard
         </Button>
-      </NavLink>
-      <NavLink to="/create">
+      </Link>
+      <Link as={RouterLink} to="/create">
         <Button
           leftIcon={<AddIcon />}
           variant="link"
@@ -42,7 +42,7 @@ export default function Sidebar() {
         >
           Create Project
         </Button>
-      </NavLink>
+      </Link>
     </Flex>
   );
 }
