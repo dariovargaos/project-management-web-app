@@ -132,12 +132,11 @@ export default function Signup() {
                 required
                 onChange={(e) => setDisplayName(e.target.value)}
                 value={displayName}
-                minLength="6"
                 maxLength="18"
               />
             </InputGroup>
             <FormHelperText>
-              Please input name between 6 and 18 letters.
+              Display name contain maximum of 18 characters.
             </FormHelperText>
           </FormControl>
           <FormControl isInvalid={thumbnailErorr} mb="10px">

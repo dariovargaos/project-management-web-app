@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
+import { useGuestLogin } from "../../hooks/useGuestLogin";
 import {
   Flex,
   Box,
@@ -22,6 +23,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { login, error, isPending } = useLogin();
+  const { guestLogin, guestError, isGuestPending } = useGuestLogin();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -94,6 +96,18 @@ export default function Login() {
             ></Button>
           )}
           {error && <Text>{error}</Text>}
+          {!isGuestPending && (
+            <Button colorScheme="whatsapp" variant="ghost" onClick={guestLogin}>
+              Log in as guest
+            </Button>
+          )}
+          {isGuestPending && (
+            <Button
+              colorScheme="whatsapp"
+              isLoading
+              loadingText="Logging in as guest..."
+            ></Button>
+          )}
         </form>
         <Link as={RouterLink} to="/resetpassword" color="whatsapp.500">
           Forgot password?

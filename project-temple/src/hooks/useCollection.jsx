@@ -1,20 +1,12 @@
 import { useState, useEffect } from "react";
-import { useAuthContext } from "./useAuthContext";
 import { db } from "../firebase/config";
-import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-  orderBy,
-} from "firebase/firestore";
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 //make and order by createdAt function so projects are displaying in order
 
 export const useCollection = (c) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
-  const { user } = useAuthContext();
 
   useEffect(() => {
     let ref = collection(db, c);
