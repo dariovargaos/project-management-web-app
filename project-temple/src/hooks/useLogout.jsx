@@ -19,37 +19,64 @@ export const useLogout = () => {
     setError(null);
     setIsPending(true);
 
-    //sign the user out
-    try {
-      // update online status
-      const { uid } = user;
-      await updateDoc(doc(db, "users", uid), {
-        online: false,
-      });
+    if (user.isAnonymous) {
+      try {
+        await signOut(auth);
 
-      await signOut(auth);
+        dispatch({ type: "LOGOUT" });
 
-      //dispatch logout action
-      dispatch({ type: "LOGOUT" });
+        if (!isCancelled) {
+          setError(null);
+          setIsPending(false);
+          navigate("/");
+        }
 
-      //update state
-      if (!isCancelled) {
-        setError(null);
-        setIsPending(false);
-        navigate("/");
+        toast({
+          title: "Logged out.",
+          status: "success",
+          duration: "5000",
+          isClosable: true,
+        });
+      } catch (err) {
+        if (!isCancelled) {
+          console.log(err.message);
+          setError(err.message);
+          setIsPending(false);
+        }
       }
+    } else {
+      //sign the user out
+      try {
+        // update online status
+        const { uid } = user;
+        await updateDoc(doc(db, "users", uid), {
+          online: false,
+        });
 
-      toast({
-        title: "Logged out.",
-        status: "success",
-        duration: "5000",
-        isClosable: true,
-      });
-    } catch (err) {
-      if (!isCancelled) {
-        console.log(err.message);
-        setError(err.message);
-        setIsPending(false);
+        await signOut(auth);
+
+        //dispatch logout action
+        dispatch({ type: "LOGOUT" });
+
+        //update state
+        if (!isCancelled) {
+          setError(null);
+          setIsPending(false);
+          navigate("/");
+        }
+
+        toast({
+          title: "Logged out.",
+          status: "success",
+          duration: "5000",
+          isClosable: true,
+        });
+      } catch (err) {
+        if (!isCancelled) {
+          console.log(err.message);
+          setError(err.message);
+          setIsPending(false);
+        }
       }
     }
   };

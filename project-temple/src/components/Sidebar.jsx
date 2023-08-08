@@ -14,14 +14,28 @@ export default function Sidebar() {
       gap="10px"
       wordBreak="break-word"
     >
-      <Box
-        textAlign="center"
-        p="40px 30px"
-        borderBottom="1px solid rgba(255,255,255, 0.2)"
-      >
-        <UserAvatar src={user.photoURL} name={user.displayName} />
-        <Text fontWeight="bold">Hey {user.displayName}</Text>
-      </Box>
+      {!user.isAnonymous ? (
+        <Box
+          textAlign="center"
+          p="40px 30px"
+          borderBottom="1px solid rgba(255,255,255, 0.2)"
+        >
+          <UserAvatar src={user.photoURL} name={user.displayName} />
+          <Text fontWeight="bold">Hey {user.displayName}</Text>
+        </Box>
+      ) : (
+        <Box
+          textAlign="center"
+          p="40px 30px"
+          borderBottom="1px solid rgba(255,255,255, 0.2)"
+        >
+          <UserAvatar src={user.photoURL} />
+          <Text fontWeight="bold">Hey guest</Text>
+          <Text fontSize="xs">
+            As guest user, you have limeted access to the app.
+          </Text>
+        </Box>
+      )}
 
       <Link as={RouterLink} to="/">
         <Button

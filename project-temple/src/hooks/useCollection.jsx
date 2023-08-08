@@ -30,7 +30,6 @@ export const useCollection = (c) => {
         snapshot.docs.forEach((doc) => {
           results.push({ ...doc.data(), id: doc.id });
         });
-        console.log("Fetched data:", results);
         setDocuments(results);
         setError(null);
       },
