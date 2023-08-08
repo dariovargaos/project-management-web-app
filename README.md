@@ -6,4 +6,4 @@
 * But, if you want just to explore the app there is a log in as guest option with limited access.
 * Technologies used for the interface are HTML, CSS, JavaScript and React and Firebase for the backend.
 * It can be used either on desktop or mobile.
-* Project is live here: project-management-web-a-5a8fe.web.app
+* Project is live here: [project-management-web-a-5a8fe.web.app](https://project-management-web-a-5a8fe.web.app)
