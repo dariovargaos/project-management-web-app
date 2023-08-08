@@ -81,14 +81,19 @@ export default function ProjectSummary({ project }) {
             Edit project
           </Button>
         )}
-
-        <Button
-          size="sm"
-          onClick={() => setShowLogs(true)}
-          colorScheme="whatsapp"
-        >
-          Show logs
-        </Button>
+        {!user.isAnonymous ? (
+          <Button
+            size="sm"
+            onClick={() => setShowLogs(true)}
+            colorScheme="whatsapp"
+          >
+            Show logs
+          </Button>
+        ) : (
+          <Button size="sm" isDisabled colorScheme="whatsapp">
+            Show logs
+          </Button>
+        )}
 
         {user.uid === project.createdBy.id && (
           <Button

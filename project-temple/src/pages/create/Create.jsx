@@ -163,10 +163,15 @@ export default function Create() {
               {formError}
             </Text>
           )}
-
-          <Button colorScheme="whatsapp" type="submit">
-            Add project
-          </Button>
+          {!user.isAnonymous ? (
+            <Button colorScheme="whatsapp" type="submit">
+              Add project
+            </Button>
+          ) : (
+            <Button colorScheme="whatsapp" isDisabled>
+              Add project
+            </Button>
+          )}
         </form>
       </Box>
     </Box>

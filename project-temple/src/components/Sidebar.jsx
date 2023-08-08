@@ -32,7 +32,7 @@ export default function Sidebar() {
           <UserAvatar src={user.photoURL} />
           <Text fontWeight="bold">Hey guest</Text>
           <Text fontSize="xs">
-            As guest user, you have limeted access to the app.
+            As guest user, you have limited access to the app.
           </Text>
         </Box>
       )}

@@ -112,6 +112,12 @@ export default function Login() {
         <Link as={RouterLink} to="/resetpassword" color="whatsapp.500">
           Forgot password?
         </Link>
+        <Text color="whatsapp.500">
+          Not registered yet?{" "}
+          <Link as={RouterLink} to="/signup" fontWeight="bold">
+            Create an account
+          </Link>
+        </Text>
       </Box>
     </Flex>
   );

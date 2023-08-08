@@ -72,16 +72,25 @@ export default function ProjectComments({ project }) {
         ))}
 
       <form onSubmit={handleSubmit}>
-        <FormControl>
-          <FormLabel>Add new comment:</FormLabel>
+        <FormControl mb="10px">
+          <FormLabel color="color.headingColor">Add new comment:</FormLabel>
           <Textarea
             required
             onChange={(e) => setNewComment(e.target.value)}
             value={newComment}
             bg="white"
+            resize="none"
           />
         </FormControl>
-        <Button type="submit">Add Comment</Button>
+        {!user.isAnonymous ? (
+          <Button type="submit" colorScheme="whatsapp">
+            Add Comment
+          </Button>
+        ) : (
+          <Button colorScheme="whatsapp" isDisabled>
+            Add comment
+          </Button>
+        )}
       </form>
     </Flex>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSignup } from "../../hooks/useSignup";
+import { Link as RouterLink } from "react-router-dom";
 
 import {
   Box,
@@ -14,6 +15,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  Link,
 } from "@chakra-ui/react";
 import {
   EmailIcon,
@@ -163,6 +165,12 @@ export default function Signup() {
           )}
           {error && <Text>{error}</Text>}
         </form>
+        <Text color="whatsapp.500">
+          Already have an account?{" "}
+          <Link as={RouterLink} to="/login" fontWeight="bold">
+            Log in
+          </Link>
+        </Text>
       </Box>
     </Box>
   );

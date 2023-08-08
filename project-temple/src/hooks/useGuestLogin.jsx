@@ -28,6 +28,7 @@ export const useGuestLogin = () => {
 
       toast({
         title: "Logged in as guest.",
+        description: "You have limited access to the app.",
         status: "info",
         duration: "5000",
         isClosable: true,
