@@ -69,7 +69,15 @@ export const useSignup = () => {
     } catch (err) {
       if (!isCancelled) {
         console.log(err.message);
-        setError(err.message);
+        if (
+          err.message.includes("Firebase: Error (auth/email-already-in-use).")
+        ) {
+          setError(
+            "This email address is already in use. Please choose another email."
+          );
+        } else {
+          setError(err.message);
+        }
         setIsPending(false);
       }
     }

@@ -1,14 +1,4 @@
-import {
-  Box,
-  Button,
-  Text,
-  Flex,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-} from "@chakra-ui/react";
+import { Text, Flex, Tabs, TabList, Tab } from "@chakra-ui/react";
 
 const filterList = [
   "all",
@@ -28,7 +18,10 @@ export default function ProjectFilter({ currentFilter, changeFilter }) {
     <Flex align="center">
       <Text>Filter by:</Text>
       <Tabs colorScheme="whatsapp">
-        <TabList>
+        <TabList
+          display="flex"
+          flexDir={{ base: "column", md: "row", lg: "row" }}
+        >
           {filterList.map((filter) => (
             <Tab key={filter} onClick={() => handleClick(filter)}>
               {filter}

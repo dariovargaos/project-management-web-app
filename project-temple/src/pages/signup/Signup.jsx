@@ -163,7 +163,7 @@ export default function Signup() {
               loadingText="Signing up..."
             ></Button>
           )}
-          {error && <Text>{error}</Text>}
+          {error && <Text color="red">{error}</Text>}
         </form>
         <Text color="whatsapp.500">
           Already have an account?{" "}
