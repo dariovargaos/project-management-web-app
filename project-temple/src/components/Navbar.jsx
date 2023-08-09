@@ -10,7 +10,7 @@ export default function Navbar() {
   const { logout, isPending } = useLogout();
   const { user } = useAuthContext();
   return (
-    <Flex as="nav" p="10px" alignItems="center" gap="20px" mb="20px">
+    <Flex as="nav" p="10px" alignItems="center" gap="20px">
       <Image src={Temple} alt="temple icon" />
       <Heading size="md">Temple</Heading>
 

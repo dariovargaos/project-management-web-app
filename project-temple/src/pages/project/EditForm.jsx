@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import { timestamp } from "../../firebase/config";
@@ -54,12 +53,12 @@ export default function EditForm({ project, isOpen, onClose }) {
     setFormError(null);
 
     if (!category) {
-      setFormError("Please select a project category");
+      setFormError("Please select a project category.");
       return;
     }
 
     if (assignedUsers.length < 1) {
-      setFormError("Please assign the project to at least one user");
+      setFormError("Please assign the project to at least one user.");
       return;
     }
 
@@ -85,12 +84,15 @@ export default function EditForm({ project, isOpen, onClose }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size="lg">
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent w={["90%", "50%", "40%", "30%"]}>
         <ModalHeader>Edit Project</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <form onSubmit={handleSubmit}>
-            <FormControl isRequired mb="40px">
+          <form
+            onSubmit={handleSubmit}
+            style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+          >
+            <FormControl isRequired>
               <FormLabel>Project name:</FormLabel>
               <Input
                 required
@@ -99,7 +101,7 @@ export default function EditForm({ project, isOpen, onClose }) {
                 value={name}
               />
             </FormControl>
-            <FormControl isRequired mb="20px">
+            <FormControl isRequired>
               <FormLabel>Project details:</FormLabel>
               <Textarea
                 required
@@ -109,7 +111,7 @@ export default function EditForm({ project, isOpen, onClose }) {
                 resize="none"
               />
             </FormControl>
-            <FormControl isRequired mb="20px">
+            <FormControl isRequired>
               <FormLabel>Due date:</FormLabel>
               <Input
                 required
@@ -118,14 +120,14 @@ export default function EditForm({ project, isOpen, onClose }) {
                 value={dueDate}
               />
             </FormControl>
-            <FormControl isRequired mb="20px">
+            <FormControl isRequired>
               <FormLabel>Project category:</FormLabel>
               <Select
                 options={categories}
                 onChange={(option) => setCategory(option)}
               />
             </FormControl>
-            <FormControl isRequired mb="20px">
+            <FormControl isRequired>
               <FormLabel>Assign to:</FormLabel>
               <Select
                 onChange={(option) => setAssignedUsers(option)}
@@ -133,12 +135,12 @@ export default function EditForm({ project, isOpen, onClose }) {
                 isMulti
               />
             </FormControl>
-            {formError && (
-              <Text color="red" mb="20px">
-                {formError}
-              </Text>
-            )}
-            <Button colorScheme="whatsapp" type="submit">
+            {formError && <Text color="red">{formError}</Text>}
+            <Button
+              colorScheme="whatsapp"
+              type="submit"
+              size={{ base: "sm", md: "md", lg: "md" }}
+            >
               Submit changes
             </Button>
           </form>

@@ -36,11 +36,12 @@ export default function Login() {
   return (
     <Flex justifyContent="center">
       <Box
-        minW="400px"
+        w={["90%", "50%", "40%", "30%"]}
         bg="#fff"
         border="1px solid #ddd"
         p="40px"
         boxShadow="3px 3px 5px rgba(0,0,0, 0.05)"
+        overflow="hidden"
       >
         <form onSubmit={handleSubmit}>
           <Heading as="h2" fontSize="1.5em" mb="8px">

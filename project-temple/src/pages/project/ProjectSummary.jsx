@@ -35,13 +35,13 @@ export default function ProjectSummary({ project }) {
       title: "Project deleted.",
       description: "Successfully deleted the project.",
       status: "success",
-      duration: "5000",
+      duration: "3000",
       isClosable: true,
     });
   };
   return (
     <Flex flexDir="column" gap="10px">
-      <Card maxH="400px">
+      <Card>
         <CardHeader>
           <Heading size="md" color="color.headingColor">
             {project.name}
@@ -77,6 +77,7 @@ export default function ProjectSummary({ project }) {
             size="sm"
             onClick={() => setShowEdit(true)}
             colorScheme="whatsapp"
+            fontSize={{ base: "xs", lg: "sm" }}
           >
             Edit project
           </Button>
@@ -86,11 +87,17 @@ export default function ProjectSummary({ project }) {
             size="sm"
             onClick={() => setShowLogs(true)}
             colorScheme="whatsapp"
+            fontSize={{ base: "xs", lg: "sm" }}
           >
             Show logs
           </Button>
         ) : (
-          <Button size="sm" isDisabled colorScheme="whatsapp">
+          <Button
+            size="sm"
+            fontSize={{ base: "xs", sm: "sm", md: "sm", lg: "sm" }}
+            isDisabled
+            colorScheme="whatsapp"
+          >
             Show logs
           </Button>
         )}
@@ -98,6 +105,7 @@ export default function ProjectSummary({ project }) {
         {user.uid === project.createdBy.id && (
           <Button
             size="sm"
+            fontSize={{ base: "xs", lg: "sm" }}
             colorScheme="whatsapp"
             variant="ghost"
             onClick={handleDelete}

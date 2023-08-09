@@ -63,7 +63,7 @@ export const useSignup = () => {
         title: "Account created.",
         description: "You've successfully created account.",
         status: "success",
-        duration: "5000",
+        duration: "3000",
         isClosable: true,
       });
     } catch (err) {

@@ -34,7 +34,7 @@ export const useLogout = () => {
         toast({
           title: "Logged out.",
           status: "success",
-          duration: "5000",
+          duration: "3000",
           isClosable: true,
         });
       } catch (err) {

@@ -37,7 +37,7 @@ export default function Sidebar() {
         </Box>
       )}
 
-      <Link as={RouterLink} to="/">
+      <Link as={RouterLink} to="/" w="0px">
         <Button
           leftIcon={<CalendarIcon />}
           variant="link"
@@ -47,7 +47,7 @@ export default function Sidebar() {
           Dashboard
         </Button>
       </Link>
-      <Link as={RouterLink} to="/create">
+      <Link as={RouterLink} to="/create" w="0px">
         <Button
           leftIcon={<AddIcon />}
           variant="link"

@@ -37,7 +37,7 @@ export const useLogin = () => {
       toast({
         title: "Logged in.",
         status: "success",
-        duration: "5000",
+        duration: "3000",
         isClosable: true,
       });
     } catch (err) {

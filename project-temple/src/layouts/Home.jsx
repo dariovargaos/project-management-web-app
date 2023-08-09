@@ -8,10 +8,17 @@ import Temple from "/temple4.jpg";
 
 export default function Home() {
   return (
-    <Box bg="gray.100" minH="100vh" display="flex" flexDir="column" gap={150}>
+    <Box
+      bg="gray.100"
+      minH="100vh"
+      display="flex"
+      flexDir="column"
+      gap={150}
+      overflow="hidden"
+    >
       <Navbar />
       <Box>
-        <VStack>
+        <VStack w={["100%", "100%", "100%", "100%"]} p="5px">
           <Heading>Welcome to the Temple</Heading>
           <Image src={Temple} alt="temple" h="200px" />
           <Text>

@@ -17,6 +17,16 @@ const fonts = {
   body: "Tahoma",
 };
 
+const globalStyles = {
+  styles: {
+    global: {
+      margin: 0,
+      padding: 0,
+      boxSizing: "border-box",
+    },
+  },
+};
+
 // const components = {
 //   Progress: {
 //     baseStyle: {
@@ -28,7 +38,7 @@ const fonts = {
 //   },
 // };
 
-const theme = extendTheme({ colors, fonts });
+const theme = extendTheme({ colors, fonts, globalStyles });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ChakraProvider theme={theme}>
