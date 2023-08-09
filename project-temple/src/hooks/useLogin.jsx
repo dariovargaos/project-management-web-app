@@ -43,7 +43,14 @@ export const useLogin = () => {
     } catch (err) {
       if (!isCancelled) {
         console.log(err.message);
-        setError(err.message);
+        if (
+          err.message.includes("Firebase: Error (auth/user-not-found).") ||
+          err.message.includes("Firebase: Error (auth/wrong-password).")
+        ) {
+          setError("Incorrect email or password.");
+        } else {
+          setError(err.message);
+        }
         setIsPending(false);
       }
     }

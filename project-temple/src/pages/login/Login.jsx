@@ -84,6 +84,11 @@ export default function Login() {
               </InputRightElement>
             </InputGroup>
           </FormControl>
+          {error && (
+            <Text fontWeight="bold" color="red">
+              {error}
+            </Text>
+          )}
           {!isPending && (
             <Button colorScheme="whatsapp" type="submit">
               Log in
@@ -96,7 +101,6 @@ export default function Login() {
               loadingText="Logging in..."
             ></Button>
           )}
-          {error && <Text>{error}</Text>}
           {!isGuestPending && (
             <Button colorScheme="whatsapp" variant="ghost" onClick={guestLogin}>
               Log in as guest
